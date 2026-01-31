@@ -1,0 +1,25 @@
+! wow a bmad file
+
+kfq = 0.25
+kdq = 0.5
+
+! pick a particle
+
+parameter[particle] = proton
+parameter[E_tot] = 1.0 * 1e9
+
+! set up drifts and quads
+
+d1: drift, l = 5
+d2: drift, l = 2
+fq: quadrupole, k1 =  kfq, l = 0.5
+dq: quadrupole, k1 = -kdq, l = 0.5
+
+Beamline: line=(d1, fq, d2, dq, d2, fq, d1)
+B2: line=(Beamline, Beamline)
+B4: line=(B2,B2)
+
+use, b2
+
+particle_start[px] =  0.2
+particle_start[py] = -0.2
