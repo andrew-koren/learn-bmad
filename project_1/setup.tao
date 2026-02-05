@@ -1,0 +1,18 @@
+alias opt run lm
+! opt
+! set plot r1123 component = design
+! set plot r1223 component = design
+! scale
+! set global%var_out_file = 'var2.out'
+! write ps project1_2.ps
+
+set branch 0 geometry = open
+set particle_start x = 0.2
+set particle_start y = -0.2
+set lattice base = model
+set plot r1123 component = base
+set plot r1223 component = base
+opt
+scale
+set global%var_out_file = 'var1.out'
+write ps project1_1.ps

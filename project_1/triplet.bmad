@@ -1,0 +1,46 @@
+!+
+! Translated from MADX to Bmad by madx_to_bmad.py
+! File: triplet/triplet.madx
+!-
+
+! focusing, defocusing quadrupoles
+kfq = 0.25
+kdq = 0.5
+
+! Imaging triplet
+
+parameter[particle] = proton
+parameter[E_tot] = 10.0 * 1e9
+
+! initial guess
+
+d1: drift, l = 5
+d2: drift, l = 2
+fq: quadrupole, k1 = kfq, l = 0.5 
+dq: quadrupole, k1 = -kdq, l = 0.5
+
+BEAMLINE: line=(D1,FQ,D2,DQ,D2,FQ,D1)
+B2: line=(BEAMLINE,BEAMLINE)
+B4: line=(B2,B2)
+
+use, b2
+
+particle_start[px] = 0.2
+particle_start[py] = -0.2
+
+!PLOT, haxis=s, vaxis=px,py, interpolate;
+
+!OPTION, debug;
+
+!CONSTRAINT, RANGE=#E, MUX=0.25, MUY=0.25;
+!GLOBAL,SEQUENCE=B2,Q1=0.49,Q2=0.49;
+
+! another one?
+! use, b2
+! particle_start[px] = 0.2
+! particle_start[py] = -0.2
+
+!PLOT, haxis=s, vaxis=px,py, interpolate=true;
+
+
+

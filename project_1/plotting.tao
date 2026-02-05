@@ -1,0 +1,5 @@
+set plot r1223 parameter = design
+set plot r1223 component = design
+set plot r33 key_table
+set plot_page size = 600, 500
+scale
