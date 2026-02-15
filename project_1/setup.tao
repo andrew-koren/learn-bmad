@@ -1,10 +1,11 @@
 alias opt run lm
+alias output write ps project1_[[1]].ps
+
 ! opt
 ! set plot r1123 component = design
 ! set plot r1223 component = design
 ! scale
 ! set global%var_out_file = 'var2.out'
-! write ps project1_2.ps
 
 set branch 0 geometry = open
 set particle_start x = 0.2
@@ -15,4 +16,3 @@ set plot r1223 component = base
 opt
 scale
 set global%var_out_file = 'var1.out'
-write ps project1_1.ps

@@ -17,6 +17,8 @@
   place(3) = 'r2123', 'beta'
   place(4) = 'r2223', 'orbit'
   place(5) = 'r33', 'key'
+  place(6) = 'layout12', 'lat_layout'
+  place(7) = 'layout22', 'lat_layout'
 /
 
 !------------------------ Data -------------------------------
