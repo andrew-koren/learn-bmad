@@ -7,5 +7,4 @@
   plot_page%size = 500, 500
   place(1) = 'r12', 'alpha'
   place(2) = 'r22', 'beta'
-  place(3) = 'layout', 'lat_layout'
 /

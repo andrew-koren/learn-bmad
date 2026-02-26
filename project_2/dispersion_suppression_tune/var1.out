@@ -1,0 +1,32 @@
+ expand_lattice
+ QF_STRAIGHT##1[K1] =  1.45940359155192878E-001
+ QF_STRAIGHT##2[K1] =  1.45940359155192878E-001
+ QD_STRAIGHT##1[K1] = -1.45940359155192878E-001
+ QD_STRAIGHT##2[K1] = -1.45940359155192878E-001
+ 
+ end_file
+ 
+ 
+ ! Top 10
+ 
+ Constraints                  Ref_Ele    Start_Ele   Ele/S    Meas-or-Lim    Model       Merit      Max_Loc
+ phase[2]   phase.b <target>                        END        1.5645E+00   1.5645E+00  1.972E-30
+ quads[2]   QD*[K1]                                 10.00     -1.0000E+30  -1.4594E-01  0.000E+00
+ quads[1]   QF*[K1]                                 0.50      -1.0000E+30   1.4594E-01  0.000E+00
+ phase[1]   phase.a <target>                        END        1.5645E+00   1.5645E+00  0.000E+00
+ Constraints                  Ref_Ele    Start_Ele   Ele/S    Meas-or-Lim    Model       Merit      Max_Loc
+ 
+  figure of merit: 1.972152E-30
+ 
+ List of non-zero contributors to the Merit Function:
+ Name                                          Merit           Sigma [= sqrt(Chi^2/N)]
+ phase.1                                       1.9722E-30      4.4409E-16
+ 
+ Constraints                  Ref_Ele    Start_Ele   Ele/S    Meas-or-Lim    Model       Merit      Max_Loc
+ phase[1]   phase.a <target>                        END        1.5645E+00   1.5645E+00  0.000E+00
+ phase[2]   phase.b <target>                        END        1.5645E+00   1.5645E+00  1.972E-30
+ quads[1]   QF*[K1]                                 0.50      -1.0000E+30   1.4594E-01  0.000E+00
+ quads[2]   QD*[K1]                                 10.00     -1.0000E+30  -1.4594E-01  0.000E+00
+ Constraints                  Ref_Ele    Start_Ele   Ele/S    Meas-or-Lim    Model       Merit      Max_Loc
+ 
+  figure of merit: 1.972152E-30

@@ -1,0 +1,107 @@
+! Dispersion section design
+
+parameter[particle] = proton
+parameter[p0c] = 10.0 * 1e9
+parameter[geometry] = closed
+
+circumference=200.0
+n=5.0 !number of cells per half-ring 
+lcell=circumference/n/2
+ldip=8.0 !dipole length, we use 80% packing fraction, 16 m per 20-m cell
+lq=1.0 !quad length (when we get to thick lenses)
+ld=0.5 ! drift length
+
+! optimized for cell_ring
+!kf_ring =  1.33605776511995816E-001
+!kd_ring = -1.44003130749939728E-001
+!kf_ring =  1.33106200005684960E-001
+!kd_ring = -1.43517695357926939E-001
+
+
+! optimized for cell_racetrack
+!kf_racetrack =  1.39958455109633784E-001
+!kd_racetrack = -1.45213615151353087E-001
+!kf_racetrack =  1.39480981183255776E-001
+!kd_racetrack = -1.44743194371467515E-001
+
+
+! optimized for cell_straight
+!kf_straight =  1.46396514012131940E-001
+!kd_straight = -1.46396514012131940E-001
+!kf_straight =  1.45940359155192878E-001
+!kd_straight = -1.45940359155192878E-001
+
+
+! optimized for cell_ds
+!kf_ds =  1.44803480395879064E-001
+!kd_ds = -1.46107798362320240E-001
+!kf_ds =  1.44342147160326895E-001
+!kd_ds = -1.45648197797880963E-001
+
+qf_ring: quad, l=lq/2
+qd_ring: quad, l=lq/2
+qf_ring[k1]=1.33106200005684960E-001
+qd_ring[k1]=-1.43517695357926939E-001
+
+qf_racetrack: quad, l=lq/2
+qd_racetrack: quad, l=lq/2
+qf_racetrack[k1] =  1.39480981183255776E-001
+qd_racetrack[k1] = -1.44743194371467515E-001
+
+qf_straight: quad, l=lq/2
+qd_straight: quad, l=lq/2
+qf_straight[k1] =  1.45940359155192878E-001
+qd_straight[k1] = -1.45940359155192878E-001
+
+qf_ds: quad, l=lq/2
+qd_ds: quad, l=lq/2
+qf_ds[k1] =  1.44342147160326895E-001
+qd_ds[k1] = -1.45648197797880963E-001
+
+d: drift, l = ld
+dipole1: sbend, l=ldip, angle=pi/n/2
+dd: drift, l = ldip !drift replacing dipole
+! dipole angle: 2 dipoles per cell, n cells per half-ring
+! half angle dipole used for dispersion supperssion
+! that only works with mux=muy=90 degrees:
+dipole2: sbend, l=ldip, angle=pi/(n+2)/2
+dipole_ds: sbend, l=ldip, angle=pi/(n+2)/4
+! these are our theta1 and theta2 angles (theta1=theta2=theta/2 for mux=muy=90 degrees)
+
+! for thick lenses we will need to split the quad into two
+! only for thin lens approximation
+
+m0_ring: marker
+m1_ring: marker
+cell_ring: line = (m0_ring,qf_ring, d, dipole1, d, 2*qd_ring, d, dipole1, d, qf_ring,m1_ring)
+
+m0_racetrack: marker
+m1_racetrack: marker
+cell_racetrack: line = (m0_racetrack, qf_racetrack, d, dipole2, d, 2*qd_racetrack, d, dipole2, d, qf_racetrack, m1_racetrack)
+
+! dipole with half-strength (mux=muy=90 deg!)
+m0_ds: marker
+m1_ds: marker
+cell_ds: line = (m0_ds,qf_ds, d, dipole_ds, d, 2*qd_ds, d, dipole_ds, d, qf_ds,m1_ds)
+
+! straight cell, no dipoles => drifts
+m0_straight: marker
+m1_straight: marker
+cell_straight: line = (m0_straight,qf_straight, d, dd, d, 2*qd_straight, d, dd, d, qf_straight,m1_straight)
+
+half_ring: line = (5*cell_ring)
+
+ring: line = (2*half_ring)
+
+ds: line = (2*cell_ds)
+
+straight: line = (5*cell_straight) ! long-ish straight section (5 FODO cells)
+
+half_racetrack: line = (5*cell_racetrack)
+
+racetrack: line = (half_racetrack,ds,straight,ds,half_racetrack,ds,straight,ds)
+
+test: line = (ds, straight, ds, half_racetrack, ds, straight, ds)
+
+use, racetrack
+
