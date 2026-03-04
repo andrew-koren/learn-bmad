@@ -58,8 +58,8 @@ half_racetrack: line = (5*cell_racetrack)
 
 racetrack: line = (half_racetrack,ds,straight,ds,half_racetrack,ds,straight,ds)
 
-!use, cell_ring
+use, cell_ring
 !use, cell_racetrack
 !use, cell_straight
-use, cell_ds
+!use, cell_ds
 

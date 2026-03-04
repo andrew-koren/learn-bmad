@@ -1,0 +1,50 @@
+! Dispersion section design pi/3
+
+parameter[particle] = proton
+parameter[p0c] = 10.0 * 1e9
+parameter[geometry] = closed
+
+! pre-set quad strengths?
+
+qf: quad, l=1.0/2, k1= 0.1
+qd: quad, l=1.0/2, k1=-0.1
+
+qf_ring: qf       ! ring does not use dispersion supression
+qf_racetrack: qf  ! racetrack needs ds to go from straight -> bending -> straight
+qf_straight: qf
+qf_ds: qf
+
+qd_ring: qd
+qd_racetrack: qd
+qd_straight: qd
+qd_ds: qd
+
+d: drift, l=1.0
+dd: d,    l=8.0
+
+ring_dipole: sbend, l=8.0, angle=pi/5/2
+race_dipole: ring_dipole, angle=0.2243994752564138
+sup_dipole1: ring_dipole, angle=0.0
+sup_dipole2: ring_dipole, angle=0.4487989505128276
+
+m: marker
+
+! set up each cell/segment
+cell_ring:      line = (qf_ring,      d, ring_dipole, d, 2*qd_ring,      d, ring_dipole, d, qf_ring)
+cell_racetrack: line = (qf_racetrack, d, race_dipole, d, 2*qd_racetrack, d, race_dipole, d, qf_racetrack)
+cell_straight:  line = (qf_straight, d, dd, d, 2*qd_straight, d, dd, d, qf_straight)
+cell_drift_supression: line = 
+                       (qf_ds,        d, sup_dipole1, d, 2*qd_ds,        d, sup_dipole2, d, qf_ds)
+
+
+! combine into half-rings
+half_ring: line = (5*cell_ring)
+half_racetrack: line = (cell_drift_supression, 5*cell_racetrack, -cell_drift_supression)
+
+! combine into full rings
+ring: line = (2*half_ring)
+racetrack: line = (5*cell_straight, m, half_racetrack, m, 5*cell_straight, m, half_racetrack)
+
+!use, ring
+use, racetrack
+
