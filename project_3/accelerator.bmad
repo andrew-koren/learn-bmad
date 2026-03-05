@@ -1,0 +1,20 @@
+! Accelerator yay
+
+parameter[particle] = proton
+parameter[p0c] = 10.0e9
+parameter[geometry] = open
+
+particle_start[px] = 0.0
+particle_start[py] = 0.0
+beginning[beta_a]  = 10
+beginning[alpha_a] = 0
+beginning[beta_b]  = 10
+beginning[alpha_b] = 0
+
+d: drift, l = 1
+cavity: lcavity, l = 0.2, voltage = 1e7, rf_frequency = 1e9, superimpose, offset = 0.5, phi0 = 0.2
+cell: line = (d, cavity)
+linac: line = (500*cell)
+
+use, linac
+
