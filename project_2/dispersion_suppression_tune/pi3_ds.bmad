@@ -46,17 +46,6 @@ racetrack: line = (5*cell_straight, m, half_racetrack, m, 5*cell_straight, m, ha
 
 ! individual cells branched for optimization
 
-f1: fork, to_line = rt_line, superimpose, ele_origin = beginning   
-f2: f1,   to_line = ds_line
-f3: f1,   to_line = straight_line
-
-rt_line:      line = (cell_racetrack)
-ds_line:      line = (cell_drift_supression)
-straight_line: line = (cell_straight)
-rt_line[geometry]      = open
-ds_line[geometry]      = open
-straight_line[geometry] = open
-
 !use, ring
 use, racetrack
 
