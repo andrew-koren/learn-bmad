@@ -38,7 +38,7 @@ cell_drift_supression: line =
 
 ! combine into half-rings
 half_ring: line = (5*cell_ring)
-half_racetrack: line = (-cell_drift_supression, 5*cell_racetrack, cell_drift_supression)
+half_racetrack: line = (--cell_drift_supression, 5*cell_racetrack, cell_drift_supression)
 
 ! combine into full rings
 ring: line = (2*half_ring)

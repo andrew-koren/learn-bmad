@@ -3,8 +3,57 @@
   design_lattice(1)%file = "accelerator.bmad"
 /
 
+&tao_start
+  startup_file = 'accelerator.tao'
+/
+
+! Modified from Tutorial:
+! Simple Gaussian beam 
+&tao_beam_init
+beam_init%n_particle = 1000
+beam_init%a_norm_emit = 1.0e-6 ! Normalized emittance = emit * gamma
+beam_init%b_norm_emit = 1.0e-6 ! Normalized emittance = emit * gamma
+beam_init%bunch_charge = 1e-9 ! 1 nC
+beam_init%sig_z  = 2e-3
+beam_init%sig_pz = 2e-3
+saved_at = "*" ! Save distribution at all elements.
+/
+
 &tao_plot_page
   plot_page%size = 500, 500
-  place(1) = 'r12', 'alpha'
-  place(2) = 'r22', 'beta'
+  place(1) = 'r11', 'beam_plot'
 /
+
+! From Tao docs:
+&tao_template_plot
+plot%name = "beam_plot"
+plot%n_graph = 1
+/
+
+&tao_template_graph
+graph_index = 1
+graph%name = "x"
+graph%type = "phase_space"
+graph%box = 1, 1, 1, 1
+graph%title = "Z-Pz"
+graph%margin = 0.15, 0.06, 0.12, 0.12, "%BOX"
+graph%x%min = -15 ! heuristic
+graph%x%max = 30
+graph%y%min = -10
+graph%y%max =  10 ! will be reset by scale anyways
+graph%x%label = "z (mm)"
+graph%x_axis_scale_factor = 1000.00 !m->mm
+graph%y%label = "p\dz\u/p\d0\u (mrad)"
+graph%y%major_div = 4
+graph%y%label_offset=.4
+curve(1)%data_type_x = "z"
+curve(1)%data_type = "pz"
+curve(1)%y_axis_scale_factor = 1000 !rad->mrad
+curve(1)%data_source = "beam"
+curve(1)%ele_ref_name = "END"
+curve(1)%symbol_every = 10
+curve(1)%symbol%type = 1
+curve(1)%z_color%data_type = "energy"
+curve(1)%z_color%is_on = T
+/
+
