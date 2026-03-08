@@ -2,7 +2,14 @@
 
 parameter[particle] = proton
 parameter[p0c] = 10.0 * 1e9
-parameter[geometry] = closed
+parameter[geometry] = open ! hoping to prevent closed geometry affecting 
+                           ! initial dispersion
+
+! some generic parameters to start with
+beginning[beta_a]  = 2
+beginning[alpha_a] = 0
+beginning[beta_b]  = 2
+beginning[alpha_b] = 0
 
 ! pre-set quad strengths?
 
@@ -38,13 +45,24 @@ cell_drift_supression: line =
 
 ! combine into half-rings
 half_ring: line = (5*cell_ring)
-half_racetrack: line = (--cell_drift_supression, 5*cell_racetrack, cell_drift_supression)
+half_racetrack: line = (-cell_drift_supression, 5*cell_racetrack, cell_drift_supression)
 
 ! combine into full rings
 ring: line = (2*half_ring)
 racetrack: line = (5*cell_straight, m, half_racetrack, m, 5*cell_straight, m, half_racetrack)
 
 ! individual cells branched for optimization
+
+f1: fork, to_line = rt_line, superimpose, ele_origin = beginning   
+f2: f1,   to_line = ds_line
+f3: f1,   to_line = straight_line
+
+rt_line:      line = (cell_racetrack)
+ds_line:      line = (cell_drift_supression)
+straight_line: line = (cell_straight)
+rt_line[geometry]      = closed
+ds_line[geometry]      = closed
+straight_line[geometry] = closed
 
 !use, ring
 use, racetrack
