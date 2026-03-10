@@ -16,7 +16,7 @@ beam_init%a_emit = 1.0e-7
 beam_init%b_emit = 1.0e-7
 beam_init%bunch_charge = 1e-9 ! 1 nC
 beam_init%sig_z  = 2e-3
-beam_init%sig_pz = 2e-3
+beam_init%sig_pz = 2e-3 ! normalized z-score std
 saved_at = "*" ! Save distribution at all elements.
 /
 
@@ -69,10 +69,12 @@ curve(1)%z_color%is_on = T
   a_emit = 1e-7
   b_emit = 1e-7
   ellipse_scale = 3   ! Draw beam ellipse at n sigma
-  pz = 0, 0.01, 0.015
+  pz = -0.01, 0, 0.01, 0.015
   da_param%n_angle = 30
-  da_param%n_turn = 5 ! Low because we already have 500 cavities
+  da_param%n_turn = 2 ! Low because we already have 500 cavities
   da_param%abs_accuracy = 1e-5
+  da_param%min_angle = 0.01
+  da_param%max_angle = 6.28
 /
 
 ! dynamic aperture
