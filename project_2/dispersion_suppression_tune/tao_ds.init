@@ -15,7 +15,7 @@
 ! is up to you; Tao does not care.
 &tao_d2_data
   	d2_data%name = 'phase'
-  	n_d1_data = 3
+  	n_d1_data = 4
 /
 
 ! tao_d1_data contains the actual matching conditions
@@ -26,41 +26,53 @@
 
 &tao_d1_data
 	ix_d1_data = 1
-    d1_data%name = "rt"
-	datum(1) = 'phase.a' '' '' '1>>end' 'target' 1.0471975511965979 10
-	datum(2) = 'phase.b' '' '' '1>>end' 'target' 1.0471975511965979 10
+    d1_data%name = "ra"
+	datum(1) = 'phase.a' '' '' 'RT_LINE>>end' 'target' 1.0471975511965979 10
+	datum(2) = 'phase.b' '' '' 'RT_LINE>>end' 'target' 1.0471975511965979 10
 /
 &tao_d1_data
 	ix_d1_data = 2
-    d1_data%name = "ds"
-	datum(1) = 'phase.a' '' '' '2>>end' 'target' 1.0471975511965979 10
-	datum(2) = 'phase.b' '' '' '2>>end' 'target' 1.0471975511965979 10
+    d1_data%name = "ds1"
+	datum(1) = 'phase.a' '' '' 'ds1_line>>end' 'target' 1.0471975511965979 10
+	datum(2) = 'phase.b' '' '' 'ds1_line>>end' 'target' 1.0471975511965979 10
 /
 &tao_d1_data
 	ix_d1_data = 3
+    d1_data%name = "ds2"
+	datum(1) = 'phase.a' '' '' 'ds2_line>>end' 'target' 1.0471975511965979 10
+	datum(2) = 'phase.b' '' '' 'ds2_line>>end' 'target' 1.0471975511965979 10
+/
+&tao_d1_data
+	ix_d1_data = 4
     d1_data%name = "st"
-	datum(1) = 'phase.a' '' '' '3>>end' 'target' 1.0471975511965979 10
-	datum(2) = 'phase.b' '' '' '3>>end' 'target' 1.0471975511965979 10
+	datum(1) = 'phase.a' '' '' 'ST*>>end' 'target' 1.0471975511965979 10
+	datum(2) = 'phase.b' '' '' 'ST*>>end' 'target' 1.0471975511965979 10
 /
 
 ! These are the variables; the things to vary to satisfy the "data"
 ! We will enable/disable vars as needed
 
 &tao_var
-	v1_var%name = 'rt'
-	var(1:2)%ele_name = "1>>QF*", "1>>QD*"
+	v1_var%name = 'ra'
+	var(1:2)%ele_name = "RT_LINE>>QF*", "RT_LINE>>QD*"
 	default_step = 1e-6
 	default_attribute = 'k1'
 /
 &tao_var
-	v1_var%name = 'ds'
-	var(1:2)%ele_name = "2>>QF*", "2>>QD*"
+	v1_var%name = 'ds1'
+	var(1:2)%ele_name = "ds1_line>>QF*", "ds1_line>>QD*"
+	default_step = 1e-6
+	default_attribute = 'k1'
+/
+&tao_var
+	v1_var%name = 'ds2'
+	var(1:2)%ele_name = "ds2_line>>QF*", "ds2_line>>QD*"
 	default_step = 1e-6
 	default_attribute = 'k1'
 /
 &tao_var
 	v1_var%name = 'st'
-	var(1:2)%ele_name = "3>>QF*", "3>>QD*"
+	var(1:2)%ele_name = "ST*>>QF*", "ST*>>QD*"
 	default_step = 1e-6
 	default_attribute = 'k1'
 /

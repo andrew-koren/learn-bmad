@@ -47,33 +47,4 @@ cell_ds1: line =
 cell_ds2: line = 
                        (qf_ds2,        d, sup_dipole2, d, 2*qd_ds2,        d, sup_dipole2, d, qf_ds2)
 
-! combine into half-rings
-drift_supression_module: line = (cell_ds1, cell_ds2)
-half_ring: line = (5*cell_ring)
-half_racetrack: line = (-drift_supression_module, 5*cell_racetrack, drift_supression_module)
-
-! combine into full rings
-ring: line = (2*half_ring)
-racetrack: line = (5*cell_straight, m, half_racetrack, m, 5*cell_straight, m, half_racetrack)
-
-! individual cells branched for optimization
-
-f1: fork, to_line = rt_line, superimpose, ele_origin = beginning   
-f2_1: f1,   to_line = ds1_line
-f2_2: f1,   to_line = ds2_line
-f3: f1,   to_line = straight_line
-
-rt_line:      line = (cell_racetrack)
-ds1_line: line = (cell_ds1)
-ds2_line: line = (cell_ds2)
-straight_line: line = (cell_straight)
-
-
-rt_line[geometry]       = open
-ds1_line[geometry]      = open
-ds2_line[geometry]      = open
-straight_line[geometry] = open
-
-!use, ring
-use, racetrack
-
+use, cell_straight

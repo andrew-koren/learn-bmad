@@ -1,0 +1,30 @@
+&tao_design_lattice
+  n_universes = 1
+  design_lattice(1)%file = "single_cell.bmad"
+/
+
+! Sets custom plot page settings
+&tao_plot_page
+	plot_page%size = 400, 400
+	plot_page%text_height = 8
+	plot_page%n_curve_pts = 5000
+/
+
+&tao_d2_data
+  	d2_data%name = 'phase'
+  	n_d1_data = 1
+/
+
+&tao_d1_data
+	ix_d1_data = 1
+    d1_data%name = "cell_end_phase"
+	datum(1) = 'phase.a' '' '' 'end' 'target' 1.0471975511965979 10
+	datum(2) = 'phase.b' '' '' 'end' 'target' 1.0471975511965979 10
+/
+
+&tao_var
+	v1_var%name = 'quad_stren'
+	var(1:2)%ele_name = "QF*", "QD*"
+	default_step = 1e-6
+	default_attribute = 'k1'
+/
