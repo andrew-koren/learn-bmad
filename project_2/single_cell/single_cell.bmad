@@ -2,7 +2,7 @@
 
 parameter[particle] = proton
 parameter[p0c] = 10.0 * 1e9
-parameter[geometry] = open ! hoping to prevent closed geometry affecting 
+parameter[geometry] = closed ! hoping to prevent closed geometry affecting 
                            ! initial dispersion
 
 ! some generic parameters to start with

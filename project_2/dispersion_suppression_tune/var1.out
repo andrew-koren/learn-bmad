@@ -1,20 +1,20 @@
  expand_lattice
- 4>>QF_RACETRACK##1[K1] = -5.76250252510074057E-002
- 4>>QF_RACETRACK##2[K1] = -5.76250252510074057E-002
- 4>>QD_RACETRACK##1[K1] =  6.45535297988167056E-002
- 4>>QD_RACETRACK##2[K1] =  6.45535297988167056E-002
- 3>>QF_DS1##1[K1] = -5.47623982197305015E-002   ! Not used in optimizing
- 3>>QF_DS1##2[K1] = -5.47623982197305015E-002   ! Not used in optimizing
- 3>>QD_DS1##1[K1] =  6.45785739407080950E-002   ! Not used in optimizing
- 3>>QD_DS1##2[K1] =  6.45785739407080950E-002   ! Not used in optimizing
- 2>>QF_DS2##1[K1] = -5.76250252510073988E-002   ! Not used in optimizing
- 2>>QF_DS2##2[K1] = -5.76250252510073988E-002   ! Not used in optimizing
- 2>>QD_DS2##1[K1] =  6.45535297988167056E-002   ! Not used in optimizing
- 2>>QD_DS2##2[K1] =  6.45535297988167056E-002   ! Not used in optimizing
- 1>>QF_STRAIGHT##1[K1] = -5.47623982197305015E-002   ! Not used in optimizing
- 1>>QF_STRAIGHT##2[K1] = -5.47623982197305015E-002   ! Not used in optimizing
- 1>>QD_STRAIGHT##1[K1] =  6.45785739407080950E-002   ! Not used in optimizing
- 1>>QD_STRAIGHT##2[K1] =  6.45785739407080950E-002   ! Not used in optimizing
+ 4>>QF_RACETRACK##1[K1] =  8.48169743397404891E-002
+ 4>>QF_RACETRACK##2[K1] =  8.48169743397404891E-002
+ 4>>QD_RACETRACK##1[K1] = -9.06105492410119034E-002
+ 4>>QD_RACETRACK##2[K1] = -9.06105492410119034E-002
+ 3>>QF_DS1##1[K1] =  9.38000770718749044E-002   ! Not used in optimizing
+ 3>>QF_DS1##2[K1] =  9.38000770718749044E-002   ! Not used in optimizing
+ 3>>QD_DS1##1[K1] = -9.38000770718749044E-002   ! Not used in optimizing
+ 3>>QD_DS1##2[K1] = -9.38000770718749044E-002   ! Not used in optimizing
+ 2>>QF_DS2##1[K1] =  8.48169743397405029E-002   ! Not used in optimizing
+ 2>>QF_DS2##2[K1] =  8.48169743397405029E-002   ! Not used in optimizing
+ 2>>QD_DS2##1[K1] = -9.06105492410119034E-002   ! Not used in optimizing
+ 2>>QD_DS2##2[K1] = -9.06105492410119034E-002   ! Not used in optimizing
+ 1>>QF_STRAIGHT##1[K1] =  9.38000770718749044E-002   ! Not used in optimizing
+ 1>>QF_STRAIGHT##2[K1] =  9.38000770718749044E-002   ! Not used in optimizing
+ 1>>QD_STRAIGHT##1[K1] = -9.38000770718749044E-002   ! Not used in optimizing
+ 1>>QD_STRAIGHT##2[K1] = -9.38000770718749044E-002   ! Not used in optimizing
  
  end_file
  
@@ -22,23 +22,23 @@
  ! Top 10
  
  Constraints                    Ref_Ele    Start_Ele   Ele/S        Meas-or-Lim    Model       Merit      Max_Loc
- phase.ra[2]  phase.b <target>                        RT_LINE>>END   1.0472E+00   1.5122E+00  2.162E+00
- phase.ra[1]  phase.a <target>                        RT_LINE>>END   1.0472E+00   1.4849E+00  1.916E+00
- ra[2]        RT_LINE>>QD*[K1]                        11.00         -1.0000E+30   6.4554E-02  0.000E+00
- ra[1]        RT_LINE>>QF*[K1]                        0.50          -1.0000E+30  -5.7625E-02  0.000E+00
+ phase.ra[2]  phase.b <target>                        RT_LINE>>END   1.0472E+00   1.0472E+00  4.930E-31
+ ra[2]        RT_LINE>>QD*[K1]                        11.00         -1.0000E+30  -9.0611E-02  0.000E+00
+ ra[1]        RT_LINE>>QF*[K1]                        0.50          -1.0000E+30   8.4817E-02  0.000E+00
+ phase.ra[1]  phase.a <target>                        RT_LINE>>END   1.0472E+00   1.0472E+00  0.000E+00
  Constraints                    Ref_Ele    Start_Ele   Ele/S        Meas-or-Lim    Model       Merit      Max_Loc
  
-  figure of merit: 4.077830E+00
+  figure of merit: 4.930381E-31
  
  List of non-zero contributors to the Merit Function:
  Name                                          Merit           Sigma [= sqrt(Chi^2/N)]
- phase.ra                                      4.0778E+00      4.5154E-01
+ phase.ra                                      4.9304E-31      2.2204E-16
  
  Constraints                    Ref_Ele    Start_Ele   Ele/S        Meas-or-Lim    Model       Merit      Max_Loc
- phase.ra[1]  phase.a <target>                        RT_LINE>>END   1.0472E+00   1.4849E+00  1.916E+00
- phase.ra[2]  phase.b <target>                        RT_LINE>>END   1.0472E+00   1.5122E+00  2.162E+00
- ra[1]        RT_LINE>>QF*[K1]                        0.50          -1.0000E+30  -5.7625E-02  0.000E+00
- ra[2]        RT_LINE>>QD*[K1]                        11.00         -1.0000E+30   6.4554E-02  0.000E+00
+ phase.ra[1]  phase.a <target>                        RT_LINE>>END   1.0472E+00   1.0472E+00  0.000E+00
+ phase.ra[2]  phase.b <target>                        RT_LINE>>END   1.0472E+00   1.0472E+00  4.930E-31
+ ra[1]        RT_LINE>>QF*[K1]                        0.50          -1.0000E+30   8.4817E-02  0.000E+00
+ ra[2]        RT_LINE>>QD*[K1]                        11.00         -1.0000E+30  -9.0611E-02  0.000E+00
  Constraints                    Ref_Ele    Start_Ele   Ele/S        Meas-or-Lim    Model       Merit      Max_Loc
  
-  figure of merit: 4.077830E+00
+  figure of merit: 4.930381E-31

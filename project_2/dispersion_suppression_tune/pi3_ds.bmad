@@ -69,10 +69,10 @@ ds2_line: line = (cell_ds2)
 straight_line: line = (cell_straight)
 
 
-rt_line[geometry]       = open
-ds1_line[geometry]      = open
-ds2_line[geometry]      = open
-straight_line[geometry] = open
+rt_line[geometry]       = closed
+ds1_line[geometry]      = closed
+ds2_line[geometry]      = closed
+straight_line[geometry] = closed
 
 !use, ring
 use, racetrack
