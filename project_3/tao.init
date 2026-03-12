@@ -1,117 +1,15 @@
 &tao_design_lattice
   n_universes = 1
   design_lattice(1)%file = "accelerator.bmad"
-  design_lattice(1)%dynamic_aperture_calc = True
 /
 
 &tao_start
+  plot_file = "tao_plot.init" ! moved templates here
   startup_file = 'accelerator.tao'
-/
-
-! Modified from Tutorial:
-! Simple Gaussian beam 
-&tao_beam_init
-beam_init%n_particle = 1000
-beam_init%a_emit = 1.0e-7
-beam_init%b_emit = 1.0e-7
-beam_init%bunch_charge = 1e-9 ! 1 nC
-beam_init%sig_z  = 2e-3
-beam_init%sig_pz = 2e-3 ! normalized z-score std
-saved_at = "*" ! Save distribution at all elements.
+  beam_file = 'beam.init'
 /
 
 &tao_plot_page
   plot_page%size = 500, 500
   place(1) = 'r11', 'beam_plot'
 /
-
-! The correct tao.init form would be to separate plotting
-! into a tao_plot.init file, which would contain all 
-! the below namespaces.
-
-! From Tao docs:
-
-&tao_template_plot
-plot%name = "beam_plot"
-plot%n_graph = 1
-/
-
-&tao_template_graph
-graph_index = 1
-graph%name = "x"
-graph%type = "phase_space"
-graph%box = 1, 1, 1, 1
-graph%title = "Z-Pz"
-graph%margin = 0.15, 0.06, 0.12, 0.12, "%BOX"
-graph%x%min = -15 ! heuristic
-graph%x%max = 30
-graph%y%min = -10
-graph%y%max =  10 ! will be reset by scale anyways
-graph%x%label = "z (mm)"
-graph%x_axis_scale_factor = 1000.00 !m->mm
-graph%y%label = "p\dz\u/p\d0\u (mrad)"
-graph%y%major_div = 4
-graph%y%label_offset=.4
-curve(1)%data_type_x = "z"
-curve(1)%data_type = "pz"
-curve(1)%y_axis_scale_factor = 1000 !rad->mrad
-curve(1)%data_source = "beam"
-curve(1)%ele_ref_name = "END"
-curve(1)%symbol_every = 10
-curve(1)%symbol%type = 1
-curve(1)%z_color%data_type = "energy"
-curve(1)%z_color%is_on = T
-/
-
-! ---------- !
-
-&tao_dynamic_aperture
-  a_emit = 1e-7
-  b_emit = 1e-7
-  ellipse_scale = 3   ! Draw beam ellipse at n sigma
-  pz = -0.01, 0, 0.01, 0.015
-  da_param%n_angle = 30
-  da_param%n_turn = 2 ! Low because we already have 500 cavities
-  da_param%abs_accuracy = 1e-5
-  da_param%min_angle = 0.01
-  da_param%max_angle = 6.28
-/
-
-! dynamic aperture
-&tao_template_plot
-  plot%name = "da"
-  default_graph%x%major_div_nominal = 10
-  default_graph%x%label = "x (mm)"
-  plot%x_axis_type = "phase_space"
-  plot%n_graph = 1
-  default_curve%y_axis_scale_factor = 1000
-  default_curve%draw_symbols = T
-  default_curve%data_type = "dynamic_aperture"
-/
-
-&tao_template_graph
-  graph%name = "g1"
-  graph%type = "dynamic_aperture"
-  graph_index = 1
-  !graph%box = 1, 2, 1, 2
-  graph%title = "Dynamic Aperture"
-  graph%margin =  0.15, 0.06, 0.12, 0.12, "%BOX"
-  graph%x_axis_scale_factor = 1000
-  graph%y%label = "y (mm)"
-  graph%y%label_offset = .2
-  graph%y%max = 0 ! auto-set
-  graph%y%min = 0
-  graph%y%major_div = 4
-  graph%n_curve = 10
-  ! curve(1)%line%color = "red"
-  ! curve(1)%data_type = "beam_ellipse"
-  ! curve(1)%line%width = 5
-  ! curve(1)%legend_text = "3 sigma beam ellipse"
-  ! curve(1)%draw_symbols = F
-  curve(2:10)%data_index = 1, 2, 3, 4, 5, 6, 7, 8, 9
-  curve(3)%symbol%color = "purple"
-  curve(3)%line%color = "purple"
- /
-
-
-

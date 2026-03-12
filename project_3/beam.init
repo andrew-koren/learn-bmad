@@ -1,0 +1,11 @@
+! Modified from Tutorial:
+! Simple Gaussian beam 
+&tao_beam_init
+beam_init%n_particle = 1000
+beam_init%a_emit = 1.0e-7
+beam_init%b_emit = 1.0e-7
+beam_init%bunch_charge = 1e-9 ! 1 nC
+beam_init%sig_z  = 2e-3
+beam_init%sig_pz = 2e-3 ! normalized z-score std
+saved_at = "*" ! Save distribution at all elements.
+/
