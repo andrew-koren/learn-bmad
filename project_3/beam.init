@@ -1,5 +1,6 @@
 &tao_beam_init
   beam_init%position_file = 'trace.dat'
+  saved_at = "*" ! Save distribution at all elements.
 /
 
 

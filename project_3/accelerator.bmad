@@ -12,9 +12,9 @@ beginning[beta_b]  = 10
 beginning[alpha_b] = 0
 
 d: drift, l = 1
-cavity: lcavity, l = 0.2, voltage = 1e7, rf_frequency = 1e9, superimpose, offset = 0.5, phi0 = pi/6
+cavity: lcavity, l = 0.2, voltage = 1e7, rf_frequency = 1e9, superimpose, offset = 0.5, phi0 = -1/6
 cell: line = (d, cavity)
-linac: line = (500*cell)
+linac: line = (800*cell)
 
 use, linac
 
