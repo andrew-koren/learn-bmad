@@ -1,1 +1,4 @@
+set universe -1 twiss_calc off
 set global track_type = beam
+scale
+x_scale

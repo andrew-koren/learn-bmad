@@ -8,8 +8,3 @@
   startup_file = 'accelerator.tao'
   beam_file = 'beam.init'
 /
-
-&tao_plot_page
-  plot_page%size = 500, 500
-  place(1) = 'r11', 'beam_plot'
-/
