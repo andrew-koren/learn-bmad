@@ -14,7 +14,7 @@ beginning[beta_b]  = 10
 beginning[alpha_b] = 0
 
 d: drift, l = 1 
-cavity: lcavity, l = 0.2, voltage = 1e7, rf_frequency = 2e9, superimpose, offset = 0.5, phi0 = -0.16666666666666666
+cavity: lcavity, l = 0.2, voltage = 1e7, rf_frequency = 2e9, superimpose, offset = 0.5, phi0 = -0.08333333333333333
 cell: line = (d, cavity)
 linac: line = (3000*cell)
 
