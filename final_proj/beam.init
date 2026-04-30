@@ -1,0 +1,27 @@
+&tao_beam_init
+  beam_init%position_file = 'trace.dat'
+  saved_at = "*" ! Save distribution at all elements.
+/
+
+! Simple Gaussian beam 
+! &tao_beam_init
+!   beam_init%n_particle = 1000
+!   beam_init%bunch_charge = 1e-9
+!   saved_at = "*" ! Save distribution at all elements.
+!   always_reinit = T
+! 
+!   beam_init%a_emit = 1.0e-7
+!   beam_init%b_emit = 1.0e-7
+!   beam_init%center = 0, 0, 0, 0, 0, 0
+!   beam_init%center_jitter = 0,0,0,0,0,0
+!   beam_init%emit_jitter = 0,0
+! 
+!   ! Longitudinal spread only
+!   beam_init%sig_z  = 2e-3
+!   beam_init%sig_pz = 1e-3
+! 
+!   ! Gaussian random distribution
+!   beam_init%distribution_type(1) = "RAN_GAUSS"
+!   beam_init%distribution_type(2) = "RAN_GAUSS"
+!   beam_init%distribution_type(3) = "RAN_GAUSS"
+! /

@@ -1,0 +1,38 @@
+! Modified from Tao docs:
+
+&tao_plot_page
+  plot_page%size = 500, 500
+  place(1) = 'r11', 'beam_plot'
+/
+
+&tao_template_plot
+  plot%name = "beam_plot"
+  plot%n_graph = 1
+/
+
+&tao_template_graph
+  graph_index = 1
+  graph%name = "x"
+  graph%type = "phase_space"
+  graph%box = 1, 1, 1, 1
+  graph%title = "Z-Pz"
+  graph%margin = 0.15, 0.06, 0.12, 0.12, "%BOX"
+  graph%x%min = -10 ! heuristic
+  graph%x%max =  10
+  graph%y%min = -10
+  graph%y%max =  10
+  graph%x%label = "z (mm)"
+  graph%x_axis_scale_factor = 1000.00 !m->mm
+  graph%y%label = "p\dz\u/p\d0\u (mrad)"
+  graph%y%major_div = 4
+  graph%y%label_offset=.4
+  curve(1)%data_type_x = "z"
+  curve(1)%data_type = "pz"
+  curve(1)%y_axis_scale_factor = 1000 !rad->mrad
+  curve(1)%data_source = "beam"
+  curve(1)%ele_ref_name = 0
+  curve(1)%symbol_every = 1 ! plots every point
+  curve(1)%symbol%type = 1
+  curve(1)%z_color%data_type = "energy"
+  curve(1)%z_color%is_on = T
+/

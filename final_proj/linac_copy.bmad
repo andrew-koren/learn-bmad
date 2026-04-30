@@ -1,0 +1,23 @@
+! Accelerator yay
+! I upped the RF Frequency to make the separatrix
+! appear a bit quicker
+
+parameter[particle] = proton
+parameter[p0c] = 10.0e9
+parameter[geometry] = open
+
+particle_start[px] = 0.0
+particle_start[py] = 0.0
+beginning[beta_a]  = 10
+beginning[alpha_a] = 0
+beginning[beta_b]  = 10
+beginning[alpha_b] = 0
+
+d: drift, l = 10
+cavity: lcavity, l = 0.2, voltage = 1e7, rf_frequency = 2e9, superimpose, offset = 0.5, phi0 = -0.08333333333333333
+! cavity: rfcavity, l = 0.2, voltage = 1e7, rf_frequency = 2e9, superimpose, offset = 0.5, phi0 = 0
+cell: line = (d, cavity, d)
+linac: line = (100*cell)
+
+use, linac
+
